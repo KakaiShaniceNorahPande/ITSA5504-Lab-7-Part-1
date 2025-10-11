@@ -71,3 +71,31 @@ minikube service flask-cloud --url
 - `curl -i http://localhost:8080/api/hello` showing a 200 with JSON payload.
 - Local lambda execution output from `python lambda/invoke_local.py`.
 - (Optional) `kubectl get pods,svc` showing the pod and service running.
+
+
+## CI: Build & Push with GitHub Actions (GHCR)
+1. Commit this repo to GitHub.
+2. Push to the `main` branch (or create a `vX.Y.Z` tag) and Actions will:
+   - Build the Docker image from `flask-app/`.
+   - Tag it with the branch, tag, and SHA.
+   - Push to `ghcr.io/<owner>/flask-cloud`.
+3. Find images under **GitHub → Packages**.
+
+> If the push is denied, ensure your workflow has permission to write packages.
+This workflow already declares:
+```yaml
+permissions:
+  contents: read
+  packages: write
+```
+You generally don't need extra secrets for GHCR; it uses `GITHUB_TOKEN`.
+
+**Docker Hub instead?**
+- Add repo secrets: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN` (a PAT).
+- Set `REGISTRY: docker.io` and `IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/flask-cloud`.
+- Swap the login step to use those secrets (see comments inside `.github/workflows/docker-image.yml`).
+
+**AWS ECR quick notes**
+- Configure AWS credentials via `aws-actions/configure-aws-credentials`.
+- Use `aws-actions/amazon-ecr-login` for the login step.
+- `IMAGE_NAME` should be `<aws_account_id>.dkr.ecr.<region>.amazonaws.com/flask-cloud`.
