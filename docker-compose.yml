@@ -1,0 +1,21 @@
+services:
+  flask:
+    build: ./flask-app
+    image: flask-cloud:latest
+    container_name: flask-cloud
+    ports:
+      - "5000:5000"
+    networks: [ labnet ]
+
+  gateway:
+    build: ./gateway
+    image: nginx-gw:latest
+    container_name: api-gw
+    depends_on: [ flask ]
+    ports:
+      - "8080:80"
+    networks: [ labnet ]
+
+networks:
+  labnet:
+    driver: bridge

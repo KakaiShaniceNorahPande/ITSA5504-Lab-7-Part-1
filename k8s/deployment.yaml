@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-cloud
+  template:
+    metadata:
+      labels:
+        app: flask-cloud
+    spec:
+      containers:
+        - name: flask-cloud
+          image: flask-cloud:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
