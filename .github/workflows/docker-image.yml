@@ -12,7 +12,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/flask-cloud
+  IMAGE_NAME: ${{ github.repository_owner }}/itsa5504-exe7-flask-cloud
 
 concurrency:
   group: push-ghcr-${{ github.ref_name }}
@@ -63,7 +63,7 @@ jobs:
 
 # Notes:
 # - This workflow uses GHCR (GitHub Container Registry). Images will be published to:
-#     ghcr.io/<owner>/flask-cloud:<tag>
+#     ghcr.io/<owner>/itsa5504-exe7-flask-cloud:<tag>
 # - You can see published packages under your GitHub profile/org: Packages tab.
 # - No extra secrets are required; GITHUB_TOKEN with packages:write is used.
 # - To switch to Docker Hub:
@@ -76,6 +76,6 @@ jobs:
 #     3) Set:
 #          env:
 #            REGISTRY: docker.io
-#            IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/flask-cloud
+#            IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/itsa5504-exe7-flask-cloud
 # - To use AWS ECR, replace the login step with aws-actions/amazon-ecr-login and
-#   set IMAGE_NAME to <aws_account_id>.dkr.ecr.<region>.amazonaws.com/flask-cloud
+#   set IMAGE_NAME to <aws_account_id>.dkr.ecr.<region>.amazonaws.com/itsa5504-exe7-flask-cloud

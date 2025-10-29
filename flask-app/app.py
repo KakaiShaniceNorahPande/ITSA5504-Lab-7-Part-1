@@ -5,11 +5,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def root():
-    return "Hello Cloud", 200
+    return "Welcome to ITSA5504 Exercise 7", 200
 
 @app.route("/hello")
 def hello():
-    return jsonify(message="Hello Cloud"), 200
+    return jsonify(message="Hello Cloud | ITSA5504 | Exercise 7"), 200
 
 @app.route("/health")
 def health():

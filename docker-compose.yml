@@ -13,7 +13,7 @@ services:
     container_name: api-gw
     depends_on: [ flask ]
     ports:
-      - "8080:80"
+      - "8088:80"
     networks: [ labnet ]
 
 networks:
