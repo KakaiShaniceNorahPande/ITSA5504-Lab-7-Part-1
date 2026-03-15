@@ -3,6 +3,10 @@ import os
 
 app = Flask(__name__)
 
+@app.route("/greet")
+def greet():
+    return "<h1>Welcome Shanice</h1>", 200
+
 @app.route("/")
 def root():
     return "Welcome to ITSA5504 Exercise 7", 200
